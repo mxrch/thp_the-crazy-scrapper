@@ -2,10 +2,11 @@ require 'nokogiri'
 require 'open-uri'
 require "awesome_print"
 
-PAGE = Nokogiri::HTML(open("http://annuaire-des-mairies.com/val-d-oise.html"))
+PAGE_URL = "http://annuaire-des-mairies.com/val-d-oise.html"
 #Récupère le contenu HTML du lien donné
 
 def get_the_email_of_a_townhal_from_its_webpage(page) #Récupère l'email de la mairie du lien donné
+  page = Nokogiri::HTML(open(page))
   text = page.xpath('/html/body/div/main/section[2]/div/table/tbody/tr[4]/td[2]').text #Récupère l'email
   if text != "" #Si il y a un email
     return text #Le retourner
@@ -16,6 +17,7 @@ end
 
 def get_all_the_urls_of_val_doise_townhalls(page) #Récupére les liens des mairies de Val d'Oise
   url = page.chomp("val-d-oise.html") #On garde juste la racine du lien
+  page = Nokogiri::HTML(open(page))
   municipalities = [] #Pour stocker tous les hashs des villes
   count = 0.0
   page.css("a.lientxt").each do |municipality| #On récupère chaque ville grâce à un sélecteur css
@@ -30,7 +32,7 @@ def get_all_the_urls_of_val_doise_townhalls(page) #Récupére les liens des mair
 end
 
 def perform
-  municipalities = get_all_the_urls_of_val_doise_townhalls(PAGE)
+  municipalities = get_all_the_urls_of_val_doise_townhalls(PAGE_URL)
   for municipality in municipalities #Pour chaque hash de ville dans la liste
     puts "L'email de la mairie de #{municipality["name"].red} est : #{municipality["email"].yellow}"
   end

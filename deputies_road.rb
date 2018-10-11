@@ -32,7 +32,7 @@ def makeHash(firstName, lastName, emails) #Permet de construire
 	count = 0
 	for deputy in count..firstName.length - 1
 		if firstName[count] == "Jean-Luc" && lastName[count] == "Poudroux" #Il n'a pas d'adresse email renseignée, donc on gère l'exception
-			fullList << {"first_name" => firstName[count], "last_name" => lastName[count], "email" => "Pas d'email renseigné"}
+			fullList << {"first_name" => firstName[count], "last_name" => lastName[count], "email" => "Pas d'adresse email renseignée"}
 			count += 1
 			fullList << {"first_name" => firstName[count], "last_name" => lastName[count], "email" => emails[count - 1]}
 			break
