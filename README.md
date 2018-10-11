@@ -12,7 +12,7 @@ In these exercises, I had to do scrapping for :
 $ cd thp_the-crazy-scrapper
 $ bundle install
 ```
-This will install all the dependencies of the exercises.
+This will install all the dependencies needed for the exercises.
 
 ## :european_post_office: The Strasbourgeois Crew
 Done in team with @OwwllMan, @zOmegad, and @BrokenPirate. :heart:
